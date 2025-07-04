@@ -17,6 +17,9 @@ public class Product {
     }
     
     public void addFeature(IProductFeature<?> feature) {
+        if (hasFeature(feature.getFeatureType())) {
+            throw new IllegalArgumentException("Feature already added");
+        }
         features.add(feature);
     }
     
