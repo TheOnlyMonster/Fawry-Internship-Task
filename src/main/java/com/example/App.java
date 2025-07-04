@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class App {
     public static void main(String[] args) {
         ShippingService shippingService = new ShippingService();
-        CheckoutService checkoutService = new CheckoutService(shippingService);
+        CartService cartService = new CartService(shippingService);
         
         Product cheese = new Product("Cheese", 100.0, 10);
         cheese.addFeature(new ExpirationFeature(LocalDate.now().plusDays(7)));
@@ -35,7 +35,7 @@ public class App {
             cart.add(biscuits, 1);
             cart.add(scratchCard, 1);
             
-            checkoutService.checkout(customer, cart);
+            cartService.checkout(customer, cart);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -43,7 +43,7 @@ public class App {
         System.out.println("\n=== Test Case 2: Empty Cart ===");
         try {
             Cart emptyCart = new Cart();
-            checkoutService.checkout(customer, emptyCart);
+            cartService.checkout(customer, emptyCart);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -54,7 +54,7 @@ public class App {
             Cart expensiveCart = new Cart();
             expensiveCart.add(tv, 1);
             
-            checkoutService.checkout(poorCustomer, expensiveCart);
+            cartService.checkout(poorCustomer, expensiveCart);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -64,7 +64,7 @@ public class App {
             Cart cart2 = new Cart();
             cart2.add(cheese, 20);
             
-            checkoutService.checkout(customer, cart2);
+            cartService.checkout(customer, cart2);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -78,7 +78,7 @@ public class App {
             Cart cart3 = new Cart();
             cart3.add(expiredCheese, 1);
             
-            checkoutService.checkout(customer, cart3);
+            cartService.checkout(customer, cart3);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -90,7 +90,7 @@ public class App {
             cart4.add(mobile, 1);
             cart4.add(scratchCard, 2);
             
-            checkoutService.checkout(customer, cart4);
+            cartService.checkout(customer, cart4);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }

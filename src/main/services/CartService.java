@@ -2,14 +2,14 @@ package main.services;
 
 import main.models.*;
 import main.interfaces.IShippingService;
-import main.interfaces.ICheckoutService;
+import main.interfaces.ICartService;
 import java.util.List;
 import java.util.ArrayList;
 
-public class CheckoutService implements ICheckoutService  {
+public class CartService implements ICartService  {
     private IShippingService shippingService;
     
-    public CheckoutService(IShippingService shippingService) {
+    public CartService(IShippingService shippingService) {
         this.shippingService = shippingService;
     }
     
