@@ -1,4 +1,5 @@
 package main.services;
+
 import main.interfaces.IShippingService;
 import main.models.*;
 import java.util.List;
@@ -27,7 +28,7 @@ public class ShippingService implements IShippingService {
             totalWeight += itemWeight * quantity;
         }
         
-        System.out.println("Total package weight " + totalWeight + "kg");
+        System.out.println("Total package weight " + String.format("%.1f", totalWeight) + "kg");
     }
     
     public double calculateShippingFee(List<CartItem> shippableItems) {
