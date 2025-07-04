@@ -1,6 +1,8 @@
 package main.models;
 
-public class CartItem {
+import main.interfaces.IShippable;
+
+public class CartItem implements IShippable {
     private Product product;
     private int quantity;
     
@@ -13,6 +15,27 @@ public class CartItem {
         return product.getPrice() * quantity;
     }
     
-    public Product getProduct() { return product; }
-    public int getQuantity() { return quantity; }
+    public Product getProduct() {
+      return product;
+    }
+    
+
+    public int getQuantity() {
+      return quantity;
+    }
+
+    @Override
+    public String getName() {
+      return product.getName();
+    }
+    
+    @Override
+    public double getWeight() {
+      if (product.getFeature(ShippingFeature.class) == null) {
+        return 0;
+      }
+      return product.getFeature(ShippingFeature.class).getWeight();
+    }
+    
+
 }

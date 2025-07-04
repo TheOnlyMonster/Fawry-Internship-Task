@@ -23,8 +23,7 @@ public class CartService implements ICartService  {
         validateCartItems(cart);
         
         double subtotal = cart.getSubtotal();
-        List<CartItem> shippableItems = getShippableItems(cart);
-        double shippingFee = shippingService.calculateShippingFee(shippableItems);
+        double shippingFee = shippingService.calculateShippingFee(cart.getItems());
         double totalAmount = subtotal + shippingFee;
         
         if (customer.getBalance() < totalAmount) {
@@ -37,9 +36,7 @@ public class CartService implements ICartService  {
             item.getProduct().reduceQuantity(item.getQuantity());
         }
         
-        if (!shippableItems.isEmpty()) {
-            shippingService.ship(shippableItems);
-        }
+        shippingService.ship(cart.getItems());
         
         printReceipt(cart, subtotal, shippingFee, totalAmount, customer);
         
@@ -63,15 +60,6 @@ public class CartService implements ICartService  {
         }
     }
     
-    private List<CartItem> getShippableItems(Cart cart) {
-        List<CartItem> shippableItems = new ArrayList<>();
-        for (CartItem item : cart.getItems()) {
-            if (item.getProduct().hasFeature(ShippingFeature.class)) {
-                shippableItems.add(item);
-            }
-        }
-        return shippableItems;
-    }
     
     private void printReceipt(Cart cart, double subtotal, double shippingFee, double totalAmount, Customer customer) {
         System.out.println("** Checkout receipt **");

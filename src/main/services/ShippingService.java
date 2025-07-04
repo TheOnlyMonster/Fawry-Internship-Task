@@ -16,15 +16,11 @@ public class ShippingService implements IShippingService {
         double totalWeight = 0;
         
         for (CartItem item : shippableItems) {
-            Product product = item.getProduct();
-            ShippingFeature shippingFeature = product.getFeature(ShippingFeature.class);
-            if(shippingFeature == null) {
-                continue;
-            }
             int quantity = item.getQuantity();
-            double itemWeight = shippingFeature.getWeight();
+            double itemWeight = item.getWeight();
+            String name = item.getName();
             
-            System.out.println(quantity + "x " + product.getName() + " " + (int)(itemWeight * 1000) + "g");
+            System.out.println(quantity + "x " + name + " " + (int)(itemWeight * 1000) + "g");
             totalWeight += itemWeight * quantity;
         }
         
@@ -35,12 +31,9 @@ public class ShippingService implements IShippingService {
         double totalWeight = 0;
         
         for (CartItem item : shippableItems) {
-            Product product = item.getProduct();
-            ShippingFeature shippingFeature = product.getFeature(ShippingFeature.class);
-            if (shippingFeature == null) {
-                continue;
-            }
-            totalWeight += shippingFeature.getWeight() * item.getQuantity();
+            int quantity = item.getQuantity();
+            double itemWeight = item.getWeight();
+            totalWeight += itemWeight * quantity;
         }
         
         return totalWeight * SHIPPING_RATE_PER_KG;
