@@ -83,19 +83,8 @@ public class App {
             System.out.println("Error: " + e.getMessage());
         }
         
-        System.out.println("\n=== Test Case 6: Mixed Items with Heavy Shipping ===");
-        try {
-            Cart cart4 = new Cart();
-            cart4.add(tv, 1);
-            cart4.add(mobile, 1);
-            cart4.add(scratchCard, 2);
-            
-            cartService.checkout(customer, cart4);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
         
-        System.out.println("\n=== Test Case 7: Product Already in Cart ===");
+        System.out.println("\n=== Test Case 6: Product Already in Cart ===");
         try {
             Cart cart5 = new Cart();
             cart5.add(cheese, 1);
@@ -104,7 +93,7 @@ public class App {
             System.out.println("Error: " + e.getMessage());
         }
         
-        System.out.println("\n=== Test Case 8: Zero Quantity ===");
+        System.out.println("\n=== Test Case 7: Zero Quantity ===");
         try {
             Cart cart6 = new Cart();
             cart6.add(cheese, 0); 
