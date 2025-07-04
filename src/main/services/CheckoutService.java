@@ -2,16 +2,18 @@ package main.services;
 
 import main.models.*;
 import main.interfaces.IShippingService;
+import main.interfaces.ICheckoutService;
 import java.util.List;
 import java.util.ArrayList;
 
-public class CheckoutService  {
+public class CheckoutService implements ICheckoutService  {
     private IShippingService shippingService;
     
     public CheckoutService(IShippingService shippingService) {
         this.shippingService = shippingService;
     }
     
+    @Override
     public void checkout(Customer customer, Cart cart) {
 
         if (cart.isEmpty()) {

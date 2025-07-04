@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ShippingService implements IShippingService {
     private static final double SHIPPING_RATE_PER_KG = 30.0; 
-    
+    @Override
     public void ship(List<CartItem> shippableItems) {
         if (shippableItems.isEmpty()) {
             return;
@@ -30,7 +30,7 @@ public class ShippingService implements IShippingService {
         
         System.out.println("Total package weight " + String.format("%.1f", totalWeight) + "kg");
     }
-    
+    @Override
     public double calculateShippingFee(List<CartItem> shippableItems) {
         double totalWeight = 0;
         
